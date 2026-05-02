@@ -788,15 +788,15 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     layout: { display:"flex", flex:1, overflow:"hidden" },
     tableArea: { flex:1, overflow:"auto", padding:"20px 24px" },
     countryBtn: (sel) => ({ background:sel?"#c9a84c18":"transparent", border:sel?"1px solid #c9a84c88":"1px solid var(--bg-3)", color:sel?"var(--accent)":"var(--text-secondary)", padding:"5px 12px", borderRadius:"3px", cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.15s", fontFamily:'var(--font-sans)' }),
-    catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"11px", color:act?"var(--accent)":"#4a4a4a", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
+    catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"11px", color:act?"var(--accent)":"var(--text-secondary)", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
     table: { width:"100%", borderCollapse:"collapse", fontSize:"12.5px", fontFamily:'var(--font-sans)' },
     th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"11px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid #c9a84c33", position:i===0?"sticky":"static", left:i===0?0:"auto", zIndex:i===0?3:1, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
     tr: (i,hover) => ({ background:hover?"var(--bg-3)":(i%2===0?"var(--bg-0)":"var(--bg-1)"), cursor:"pointer", transition:"background 0.1s" }),
-    td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"#e8c96c":"var(--accent)"):"#b8b0a4", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"12px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
+    td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"var(--accent)":"var(--accent)"):"var(--text-secondary)", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"12px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
     panel: { width:"480px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid #c9a84c33", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
     panelHeader: { background:"var(--bg-3)", padding:"20px", borderBottom:"1px solid #c9a84c33" },
     panelBody: { flex:1, overflow:"auto", padding:"20px" },
-    sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"#fff", border:"1px solid var(--text-primary)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
+    sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"var(--bg-0)", border:"1px solid var(--text-primary)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
     subTab: (act) => ({ padding:"6px 12px", background:act?"var(--accent)":"transparent", color:act?"var(--bg-0)":"var(--text-secondary)", border:"1px solid "+(act?"var(--accent)":"var(--bg-3)"), borderRadius:"3px", cursor:"pointer", fontSize:"11px", fontFamily:'var(--font-sans)', fontWeight:act?"700":"400", transition:"all 0.15s" }),
     appShell: {
       position: 'relative',
@@ -1003,7 +1003,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
 
             <div style={S.panelBody}>
               {/* Summary box */}
-              <div style={{background:"#fff",border:"1px solid #d4cfc8",borderRadius:"4px",padding:"12px 14px",marginBottom:"16px"}}>
+              <div style={{background:"var(--bg-0)",border:"1px solid var(--border)",borderRadius:"4px",padding:"12px 14px",marginBottom:"16px"}}>
                 <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"6px"}}>OFFICIAL DATA SUMMARY</div>
                 <div style={{fontSize:"12.5px",color:"var(--text-primary)",lineHeight:"1.6",fontFamily:"var(--font-sans)"}}>{detailPanel.summaryData}</div>
               </div>
@@ -1038,8 +1038,8 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                   <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"10px"}}>⊕ OFFICIAL SOURCES & REFERENCES</div>
                   {panelSources.map((src, i) => (
                     <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" style={S.sourceLink}
-                      onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--accent)";e.currentTarget.style.background="#fffdf8";}}
-                      onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--text-primary)";e.currentTarget.style.background="#fff";}}>
+                      onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--accent)";e.currentTarget.style.background="var(--bg-1)";}}
+                      onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--text-primary)";e.currentTarget.style.background="var(--bg-0)";}}>
                       <div style={{flexShrink:0,width:"24px",height:"24px",background:"var(--bg-3)",borderRadius:"3px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"10px",color:"var(--accent)",fontWeight:"700"}}>↗</div>
                       <div>
                         <div style={{fontSize:"12px",fontWeight:"600",color:"var(--bg-3)",marginBottom:"2px",fontFamily:"var(--font-sans)"}}>{src.label}</div>
