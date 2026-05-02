@@ -66,10 +66,10 @@ const S = {
   },
   title: {
     fontFamily: 'var(--font-sans)',
-    fontSize: 'clamp(48px, 7vw, 96px)',
+    fontSize: 'clamp(72px, 9vw, 120px)',
     fontWeight: 700,
-    lineHeight: 0.95,
-    letterSpacing: '-2.5px',
+    lineHeight: 0.92,
+    letterSpacing: '-4px',
     color: 'var(--text-primary)',
     marginBottom: 24,
   },
@@ -128,6 +128,7 @@ export default function LandingPage() {
           Western Europe · 12 countries · AI-powered analysis
         </p>
         <button
+          type="button"
           style={S.cta}
           onClick={() => navigate('/app')}
           onMouseEnter={e => Object.assign(e.currentTarget.style, {
