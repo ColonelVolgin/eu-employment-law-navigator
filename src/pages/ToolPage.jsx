@@ -591,11 +591,11 @@ function renderMd(text) {
   while (i < lines.length) {
     const line = lines[i];
     if (line.startsWith("## ")) {
-      elements.push(<h3 key={i} style={{fontSize:"14px",fontWeight:"700",color:"var(--bg-3)",margin:"16px 0 6px",borderBottom:"1px solid var(--text-primary)",paddingBottom:"4px",fontFamily:"var(--font-sans)"}}>{line.slice(3)}</h3>);
+      elements.push(<h3 key={i} style={{fontSize:"14px",fontWeight:"700",color:"var(--text-primary)",margin:"16px 0 6px",borderBottom:"1px solid var(--border)",paddingBottom:"4px",fontFamily:"var(--font-sans)"}}>{line.slice(3)}</h3>);
     } else if (line.startsWith("### ")) {
-      elements.push(<h4 key={i} style={{fontSize:"13px",fontWeight:"700",color:"var(--bg-3)",margin:"12px 0 4px"}}>{line.slice(4)}</h4>);
+      elements.push(<h4 key={i} style={{fontSize:"13px",fontWeight:"700",color:"var(--text-primary)",margin:"12px 0 4px"}}>{line.slice(4)}</h4>);
     } else if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      elements.push(<p key={i} style={{margin:"8px 0 2px",fontWeight:"700",color:"var(--bg-3)",fontSize:"13px"}}>{line.slice(2,-2)}</p>);
+      elements.push(<p key={i} style={{margin:"8px 0 2px",fontWeight:"700",color:"var(--text-primary)",fontSize:"13px"}}>{line.slice(2,-2)}</p>);
     } else if (line.startsWith("- ") || line.startsWith("• ")) {
       const content = line.slice(2);
       const parts = content.split(/\*\*(.*?)\*\*/g);
@@ -608,7 +608,7 @@ function renderMd(text) {
     } else {
       const parts = line.split(/\*\*(.*?)\*\*/g);
       if (parts.length > 1) {
-        elements.push(<p key={i} style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j} style={{color:"var(--bg-3)"}}>{p}</strong>)}</p>);
+        elements.push(<p key={i} style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j} style={{color:"var(--text-primary)"}}>{p}</strong>)}</p>);
       } else if (line.trim()) {
         elements.push(<p key={i} style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{line}</p>);
       }
@@ -781,22 +781,22 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
   const aiData = detailPanel ? aiCache[detailPanel.key] : null;
 
   const S = {
-    app: { fontFamily:'var(--font-sans)', background:"var(--bg-0)", minHeight:"100vh", color:"var(--text-primary)", display:"flex", flexDirection:"column" },
-    header: { background:"linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 100%)", borderBottom:"1px solid #c9a84c22", padding:"20px 28px 0", flexShrink:0 },
+    app: { fontFamily:'var(--font-sans)', minHeight:"100vh", color:"var(--text-primary)", display:"flex", flexDirection:"column" },
+    header: { background:"linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 100%)", borderBottom:"1px solid var(--accent-border)", padding:"20px 28px 0", flexShrink:0 },
     title: { fontSize:"24px", fontWeight:"700", color:"var(--text-primary)", letterSpacing:"0.3px", marginBottom:"2px" },
     subtitle: { fontSize:"11px", color:"var(--text-secondary)", fontFamily:'var(--font-mono)', letterSpacing:"3px", textTransform:"uppercase", marginBottom:"16px" },
     layout: { display:"flex", flex:1, overflow:"hidden" },
     tableArea: { flex:1, overflow:"auto", padding:"20px 24px" },
-    countryBtn: (sel) => ({ background:sel?"#c9a84c18":"transparent", border:sel?"1px solid #c9a84c88":"1px solid var(--bg-3)", color:sel?"var(--accent)":"var(--text-secondary)", padding:"5px 12px", borderRadius:"3px", cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.15s", fontFamily:'var(--font-sans)' }),
+    countryBtn: (sel) => ({ background:sel?"var(--accent-dim)":"transparent", border:sel?"1px solid var(--accent-dim)":"1px solid var(--bg-3)", color:sel?"var(--accent)":"var(--text-secondary)", padding:"5px 12px", borderRadius:"3px", cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.15s", fontFamily:'var(--font-sans)' }),
     catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"11px", color:act?"var(--accent)":"var(--text-secondary)", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
     table: { width:"100%", borderCollapse:"collapse", fontSize:"12.5px", fontFamily:'var(--font-sans)' },
-    th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"11px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid #c9a84c33", position:i===0?"sticky":"static", left:i===0?0:"auto", zIndex:i===0?3:1, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
+    th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"11px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid var(--accent-border)", position:i===0?"sticky":"static", left:i===0?0:"auto", zIndex:i===0?3:1, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
     tr: (i,hover) => ({ background:hover?"var(--bg-3)":(i%2===0?"var(--bg-0)":"var(--bg-1)"), cursor:"pointer", transition:"background 0.1s" }),
     td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"var(--accent)":"var(--accent)"):"var(--text-secondary)", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"12px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
-    panel: { width:"480px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid #c9a84c33", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
-    panelHeader: { background:"var(--bg-3)", padding:"20px", borderBottom:"1px solid #c9a84c33" },
+    panel: { width:"480px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid var(--accent-border)", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
+    panelHeader: { background:"var(--bg-3)", padding:"20px", borderBottom:"1px solid var(--accent-border)" },
     panelBody: { flex:1, overflow:"auto", padding:"20px" },
-    sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"var(--bg-0)", border:"1px solid var(--text-primary)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
+    sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"var(--bg-0)", border:"1px solid var(--border)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
     subTab: (act) => ({ padding:"6px 12px", background:act?"var(--accent)":"transparent", color:act?"var(--bg-0)":"var(--text-secondary)", border:"1px solid "+(act?"var(--accent)":"var(--bg-3)"), borderRadius:"3px", cursor:"pointer", fontSize:"11px", fontFamily:'var(--font-sans)', fontWeight:act?"700":"400", transition:"all 0.15s" }),
     appShell: {
       position: 'relative',
@@ -879,7 +879,6 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
       </header>
       <div style={S.appContent}>
     <div style={S.app}>
-      <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
       <div style={S.header}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"12px"}}>
           <div>
@@ -955,7 +954,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                     >
                       <td style={S.td(0, isActive)}>
                         <div>{label}</div>
-                        {isActive && <div style={{fontSize:"9px",color:"#c9a84c88",marginTop:"2px",fontFamily:"var(--font-mono)"}}>ANALYZING</div>}
+                        {isActive && <div style={{fontSize:"9px",color:"var(--accent-dim)",marginTop:"2px",fontFamily:"var(--font-mono)"}}>ANALYZING</div>}
                       </td>
                       {activeCountries.map((c)=>{
                         const val = DATA[c.code]?.[activeCategory]?.[field];
@@ -1039,10 +1038,10 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                   {panelSources.map((src, i) => (
                     <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" style={S.sourceLink}
                       onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--accent)";e.currentTarget.style.background="var(--bg-1)";}}
-                      onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--text-primary)";e.currentTarget.style.background="var(--bg-0)";}}>
+                      onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--border)";e.currentTarget.style.background="var(--bg-0)";}}>
                       <div style={{flexShrink:0,width:"24px",height:"24px",background:"var(--bg-3)",borderRadius:"3px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"10px",color:"var(--accent)",fontWeight:"700"}}>↗</div>
                       <div>
-                        <div style={{fontSize:"12px",fontWeight:"600",color:"var(--bg-3)",marginBottom:"2px",fontFamily:"var(--font-sans)"}}>{src.label}</div>
+                        <div style={{fontSize:"12px",fontWeight:"600",color:"var(--text-primary)",marginBottom:"2px",fontFamily:"var(--font-sans)"}}>{src.label}</div>
                         <div style={{fontSize:"11px",color:"var(--text-secondary)",lineHeight:"1.4",fontFamily:"var(--font-sans)"}}>{src.desc}</div>
                         <div style={{fontSize:"10px",color:"var(--text-secondary)",marginTop:"2px",fontFamily:"var(--font-mono)"}}>{src.url}</div>
                       </div>
@@ -1062,7 +1061,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
         *::-webkit-scrollbar{width:4px;height:4px}
         *::-webkit-scrollbar-track{background:var(--bg-0)}
-        *::-webkit-scrollbar-thumb{background:#c9a84c44;border-radius:2px}
+        *::-webkit-scrollbar-thumb{background:var(--accent-dim);border-radius:2px}
       `}</style>
     </div>
       </div>
