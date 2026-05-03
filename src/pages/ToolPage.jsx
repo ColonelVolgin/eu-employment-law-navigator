@@ -781,7 +781,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
   const aiData = detailPanel ? aiCache[detailPanel.key] : null;
 
   const S = {
-    app: { fontFamily:'var(--font-sans)', minHeight:"100vh", color:"var(--text-primary)", display:"flex", flexDirection:"column" },
+    app: { fontFamily:'var(--font-sans)', flex:1, color:"var(--text-primary)", display:"flex", flexDirection:"column" },
     header: { background:"linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 100%)", borderBottom:"1px solid var(--accent-border)", padding:"20px 28px 0", flexShrink:0 },
     title: { fontSize:"24px", fontWeight:"700", color:"var(--text-primary)", letterSpacing:"0.3px", marginBottom:"2px" },
     subtitle: { fontSize:"11px", color:"var(--text-secondary)", fontFamily:'var(--font-mono)', letterSpacing:"3px", textTransform:"uppercase", marginBottom:"16px" },
@@ -801,7 +801,8 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     appShell: {
       position: 'relative',
       isolation: 'isolate',
-      minHeight: '100vh',
+      height: '100vh',
+      overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
     },
@@ -855,7 +856,9 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     appContent: {
       flex: 1,
       background: 'oklch(0.04 0.01 240 / 0.85)',
-      overflow: 'auto',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
     },
   };
 
