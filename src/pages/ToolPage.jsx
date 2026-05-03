@@ -781,12 +781,12 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
   const aiData = detailPanel ? aiCache[detailPanel.key] : null;
 
   const S = {
-    app: { fontFamily:'var(--font-sans)', flex:1, color:"var(--text-primary)", display:"flex", flexDirection:"column" },
+    app: { fontFamily:'var(--font-sans)', flex:1, minHeight:0, color:"var(--text-primary)", display:"flex", flexDirection:"column" },
     header: { background:"linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 100%)", borderBottom:"1px solid var(--accent-border)", padding:"20px 28px 0", flexShrink:0 },
     title: { fontSize:"24px", fontWeight:"700", color:"var(--text-primary)", letterSpacing:"0.3px", marginBottom:"2px" },
     subtitle: { fontSize:"11px", color:"var(--text-secondary)", fontFamily:'var(--font-mono)', letterSpacing:"3px", textTransform:"uppercase", marginBottom:"16px" },
-    layout: { display:"flex", flex:1, overflow:"hidden" },
-    tableArea: { flex:1, overflow:"auto", padding:"20px 24px" },
+    layout: { display:"flex", flex:1, overflow:"hidden", minHeight:0 },
+    tableArea: { flex:1, overflow:"auto", padding:"20px 24px", minHeight:0 },
     countryBtn: (sel) => ({ background:sel?"var(--accent-dim)":"transparent", border:sel?"1px solid var(--accent-dim)":"1px solid var(--bg-3)", color:sel?"var(--accent)":"var(--text-secondary)", padding:"5px 12px", borderRadius:"3px", cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.15s", fontFamily:'var(--font-sans)' }),
     catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"11px", color:act?"var(--accent)":"var(--text-secondary)", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
     table: { width:"100%", borderCollapse:"separate", borderSpacing:0, fontSize:"12.5px", fontFamily:'var(--font-sans)', border:"1px solid var(--border)", borderRadius:"6px" },
@@ -855,6 +855,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     },
     appContent: {
       flex: 1,
+      minHeight: 0,
       background: 'oklch(0.04 0.01 240 / 0.85)',
       overflow: 'hidden',
       display: 'flex',
