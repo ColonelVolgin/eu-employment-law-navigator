@@ -874,9 +874,10 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"12px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid var(--accent-border)", position:"sticky", top:0, left:i===0?0:"auto", zIndex:i===0?4:2, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
     tr: (i,hover) => ({ background:hover?"var(--bg-3)":(i%2===0?"var(--bg-0)":"var(--bg-1)"), cursor:"pointer", transition:"background 0.1s" }),
     td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"var(--accent)":"var(--accent)"):"var(--text-secondary)", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"13px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
-    panel: { width:"640px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid var(--accent-border)", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
-    panelHeader: { background:"var(--bg-3)", padding:"20px", borderBottom:"1px solid var(--accent-border)" },
-    panelBody: { flex:1, overflow:"auto", padding:"20px" },
+    panelOverlay: { position:"fixed", inset:0, zIndex:200, display:"flex", flexDirection:"column", background:"var(--bg-2)" },
+    panel: { display:"flex", flexDirection:"column", flex:1, overflow:"hidden" },
+    panelHeader: { background:"var(--bg-3)", padding:"20px 32px", borderBottom:"1px solid var(--accent-border)", flexShrink:0 },
+    panelBody: { flex:1, overflow:"auto", padding:"32px", maxWidth:"1100px", margin:"0 auto", width:"100%" },
     sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"var(--bg-0)", border:"1px solid var(--border)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
     subTab: (act) => ({ padding:"6px 12px", background:act?"var(--accent)":"transparent", color:act?"var(--bg-0)":"var(--text-secondary)", border:"1px solid "+(act?"var(--accent)":"var(--bg-3)"), borderRadius:"3px", cursor:"pointer", fontSize:"12px", fontFamily:'var(--font-sans)', fontWeight:act?"700":"400", transition:"all 0.15s" }),
     appShell: {
@@ -1068,18 +1069,20 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
         </div>
 
         {detailPanel && (
+          <div style={S.panelOverlay}>
           <div style={S.panel}>
             <div style={S.panelHeader}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                <div>
-                  <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"4px"}}>
-                    {detailPanel.catLabel.toUpperCase()}
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <div style={{display:"flex",alignItems:"center",gap:"16px"}}>
+                  <span style={{fontSize:"28px"}}>{detailPanel.country.flag}</span>
+                  <div>
+                    <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"2px"}}>
+                      {detailPanel.catLabel.toUpperCase()}
+                    </div>
+                    <div style={{fontSize:"20px",fontWeight:"700",color:"var(--text-primary)"}}>{detailPanel.country.name} — {detailPanel.fieldLabel}</div>
                   </div>
-                  <div style={{fontSize:"20px",marginBottom:"2px"}}>{detailPanel.country.flag}</div>
-                  <div style={{fontSize:"16px",fontWeight:"700",color:"var(--text-primary)"}}>{detailPanel.country.name}</div>
-                  <div style={{fontSize:"14px",color:"var(--accent)",marginTop:"2px"}}>{detailPanel.fieldLabel}</div>
                 </div>
-                <button onClick={()=>setDetailPanel(null)} style={{background:"transparent",border:"none",color:"var(--text-secondary)",cursor:"pointer",fontSize:"18px",padding:"0"}}>×</button>
+                <button onClick={()=>setDetailPanel(null)} style={{background:"transparent",border:"1px solid var(--border)",color:"var(--text-secondary)",cursor:"pointer",fontSize:"14px",padding:"8px 16px",borderRadius:"4px",fontFamily:"var(--font-sans)"}}>✕ Close</button>
               </div>
             </div>
 
@@ -1136,6 +1139,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                 </div>
               )}
             </div>
+          </div>
           </div>
         )}
       </div>

@@ -125,7 +125,7 @@ export default function LandingPage() {
           <em style={S.titleEm}>Navigator</em>
         </h1>
         <p style={S.sub}>
-          Western Europe · 12 countries · AI-powered analysis
+          Western Europe · AI-powered analysis
         </p>
         <button
           type="button"
