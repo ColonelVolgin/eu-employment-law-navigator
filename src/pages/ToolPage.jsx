@@ -14,6 +14,7 @@ const COUNTRIES = [
   { code: "AT", name: "Austria", flag: "🇦🇹" },
   { code: "DK", name: "Denmark", flag: "🇩🇰" },
   { code: "PT", name: "Portugal", flag: "🇵🇹" },
+  { code: "PL", name: "Poland", flag: "🇵🇱" },
 ];
 
 const CATEGORIES = [
@@ -341,6 +342,69 @@ const SOURCES = {
     perquisites: [{ label: "AT — Benefícios em espécie", url: "https://www.portaldasfinancas.gov.pt", desc: "Tax authority — IRS Art.2 non-cash benefit valuation rules" }],
     flexible: [{ label: "AT — PPR deduções", url: "https://www.portaldasfinancas.gov.pt", desc: "PPR tax deductions — age-based limits, penalty-free withdrawal conditions" }],
   },
+  PL: {
+    pension: [
+      { label: "ZUS — Zakład Ubezpieczeń Społecznych", url: "https://www.zus.pl", desc: "Social Insurance Institution — pension statements, contribution history, FUS fund details" },
+      { label: "ISAP — Ustawa o emeryturach i rentach (1998)", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19981621118", desc: "Act of 17 December 1998 on pensions from the Social Insurance Fund — full statutory text" },
+      { label: "Gov.pl — PPK (Pracownicze Plany Kapitałowe)", url: "https://www.gov.pl/web/ppk", desc: "Employee Capital Plans — mandatory DC scheme from 2019, contribution rates, opt-out rules" },
+      { label: "KNF — Nadzór nad OFE", url: "https://www.knf.gov.pl/regulacje_i_praktyka/rynek_emerytalny/ofe", desc: "Financial Supervision Authority — Open Pension Fund (OFE) oversight and transfer rules" },
+    ],
+    social_security: [
+      { label: "ZUS — Składki i wpłaty", url: "https://www.zus.pl/firmy/ubezpieczenia/skladki-zus", desc: "ZUS official contribution rate tables — employee/employer split, monthly ceiling" },
+      { label: "NFZ — Narodowy Fundusz Zdrowia", url: "https://www.nfz.gov.pl", desc: "National Health Fund — health insurance contributions and healthcare entitlements" },
+    ],
+    medical: [
+      { label: "NFZ — Portal Pacjenta", url: "https://pacjent.gov.pl", desc: "Patient portal — entitlements under public health insurance" },
+      { label: "MZ — Ministerstwo Zdrowia", url: "https://www.gov.pl/web/zdrowie", desc: "Ministry of Health — guaranteed benefit basket, healthcare reform updates" },
+    ],
+    parental: [
+      { label: "PIP — Urlopy rodzicielskie", url: "https://www.pip.gov.pl/pl/bhp/prawo-pracy/urlopy-macierzynskie-ojcowskie-rodzicielskie", desc: "State Labour Inspectorate guide — maternity, paternity, parental and childcare leave" },
+      { label: "ISAP — Kodeks pracy (Labour Code)", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19740240141", desc: "Polish Labour Code — Art. 180–1891 on parental leave entitlements" },
+    ],
+    death: [
+      { label: "ZUS — Renta rodzinna", url: "https://www.zus.pl/swiadczenia/renty/renta-rodzinna", desc: "Survivor pension — eligibility conditions, 85% base rate, income test" },
+      { label: "ZUS — Zasiłek pogrzebowy", url: "https://www.zus.pl/swiadczenia/zasilki/zasilek-pogrzebowy", desc: "Funeral grant — PLN 4,000 flat amount, application procedure" },
+    ],
+    disability: [
+      { label: "ZUS — Renta z tytułu niezdolności do pracy", url: "https://www.zus.pl/swiadczenia/renty/renta-z-tytulu-niezdolnosci-do-pracy", desc: "Disability pension types, medical assessment, qualifying contribution periods" },
+      { label: "ISAP — Ustawa o emeryturach i rentach (1998)", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19981621118", desc: "Governing statute for disability pension calculation and eligibility" },
+    ],
+    severance: [
+      { label: "PIP — Zwolnienia grupowe", url: "https://www.pip.gov.pl", desc: "State Labour Inspectorate — collective redundancy procedure, notice and severance" },
+      { label: "ISAP — Ustawa o zwolnieniach grupowych (2003)", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20030900844", desc: "Collective Redundancy Act — Art. 8 severance formula (1–3 months)" },
+    ],
+    working_time: [
+      { label: "PIP — Czas pracy", url: "https://www.pip.gov.pl/pl/bhp/prawo-pracy/czas-pracy", desc: "Labour Inspectorate guide — working time limits, overtime, annual leave rules" },
+      { label: "ISAP — Kodeks pracy Art.128–151", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19740240141", desc: "Labour Code Art. 128–151 — working time chapters, overtime limits, vacation" },
+    ],
+    residence: [
+      { label: "UDSC — Urząd do Spraw Cudzoziemców", url: "https://www.gov.pl/web/udsc", desc: "Office for Foreigners — work permit types A–E, single permit procedure for non-EU nationals" },
+      { label: "Migrant.info.pl", url: "https://www.migrant.info.pl", desc: "Official information portal for migrants — residence and work rights in Poland" },
+    ],
+    contract: [
+      { label: "ISAP — Kodeks pracy", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19740240141", desc: "Labour Code Art. 25–67 — contract types, written form, probation rules" },
+      { label: "PIP — Umowy o pracę", url: "https://www.pip.gov.pl", desc: "State Labour Inspectorate — contract requirements and employer obligations" },
+    ],
+    health_safety: [
+      { label: "PIP — BHP", url: "https://www.pip.gov.pl/pl/bhp", desc: "State Labour Inspectorate — occupational health and safety legislation and enforcement" },
+      { label: "ISAP — Kodeks pracy Dział X", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19740240141", desc: "Labour Code Section X — occupational safety and health framework obligations" },
+    ],
+    industrial: [
+      { label: "NSZZ Solidarność", url: "https://www.solidarnosc.org.pl", desc: "Independent Self-Governing Trade Union Solidarność — largest Polish trade union" },
+      { label: "OPZZ", url: "https://www.opzz.org.pl", desc: "All-Poland Alliance of Trade Unions — collective agreements and labour rights" },
+      { label: "ISAP — Ustawa o związkach zawodowych (1991)", url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU19910550234", desc: "Trade Unions Act — union formation, recognition, collective bargaining rights" },
+    ],
+    perquisites: [
+      { label: "MF — Przepisy podatkowe — świadczenia pracownicze", url: "https://www.podatki.gov.pl", desc: "Ministry of Finance — tax treatment of employee benefits and non-cash perquisites" },
+    ],
+    flexible: [
+      { label: "PIP — ZFŚS", url: "https://www.pip.gov.pl", desc: "Labour Inspectorate — Company Social Benefits Fund (ZFŚS) obligations for 50+ employees" },
+    ],
+    social: [
+      { label: "PSZ — Publiczne Służby Zatrudnienia", url: "https://psz.praca.gov.pl", desc: "Public Employment Services — unemployment benefit rates, duration, activation" },
+      { label: "MRiPS — Świadczenia rodzinne", url: "https://www.gov.pl/web/rodzina", desc: "Ministry of Family — Family 800+ benefit (child allowance) eligibility and amounts" },
+    ],
+  },
 };
 
 const FIELD_LABELS = {
@@ -580,6 +644,23 @@ const DATA = {
     health_safety:{ framework:"Lei 102/2009 (RJPSS): employer prevention duty; SST (health & safety service) mandatory",occupationalDoctor:"Médico do trabalho mandatory; min 35–45hrs/250 workers/yr; health surveillance schedule",reporting:"Acidentes trabalho: insurer within 24h; fatal: ACT immediate phone notification + written",keyLaw:"Lei 102/2009; CT Art.281–284; ACT enforcement" },
     industrial:{ tradeUnions:"CGTP, UGT; ~17% density; sectoral CCT (Convenções Coletivas de Trabalho)",worksCouncil:"Comissão de Trabalhadores: right to information, consultation; CT Art.421–422",boardLevel:"CT Art.54: worker commission production oversight; no board-level representation generally",keyLaw:"CT Art.419–422; Lei 65/77 (direito à greve)" },
   },
+  PL: {
+    pension:{ system:"Three-pillar: ZUS statutory PAYG (I) + PPK mandatory DC from 2019 (II hybrid) + voluntary individual savings (III)",type:"NDC (Notional Defined Contribution) for I pillar; fully funded DC for PPK; OFE open pension funds optional",retirementAge:"60 women / 65 men (since 2017 reform lowering from 67); no equalisation scheduled currently",earlyRetirement:"No general early retirement; partial pension (emerytura częściowa) abolished 2022; bridging pensions for hazardous occupations (pomostówki)",lateRetirement:"Deferral increases benefit proportionally; each year deferred post-60/65 increases capital base",qualifyingPeriod:"20 years women / 25 years men for minimum pension guarantee (gwarantowana emerytura minimalna)",employerContrib:"9.76% of gross for pension insurance (FUS); plus 1.5% PPK (minimum) mandatory from 250+ employees since 2019",employeeContrib:"9.76% of gross for pension insurance; plus 2% PPK mandatory; 0.5% disability insurance separate",ceiling:"No ZUS contribution ceiling since 2015 (30× average monthly salary ceiling abolished; full gross subject to contribution)",formula:"NDC: accumulated notional capital ÷ average further life expectancy at retirement (GUS tables); PPK: accumulated fund balance",indexation:"ZUS accounts revalued annually by higher of CPI or nominal wage growth; PPK invested in TDFs (Target Date Funds)",minPension:"PLN 1,780.96/month (March 2024 valorisation); applies when calculated pension falls below",maxPension:"No statutory cap; determined by career contributions",pillar2:"PPK (Pracownicze Plany Kapitałowe): mandatory enrolment from 2019 by company size; employer 1.5% + employee 2% minimum; voluntary OFE (Open Pension Funds) alternative for 2nd pillar",pillar3:"IKE (Individual Retirement Account): exempt from capital gains tax; IKZE (Individual Retirement Security Account): tax deduction on contributions (PLN 9,388/yr limit 2024)",recentReforms:"2017: retirement age lowered from 67 to 60/65; 2019: PPK launched rolling out by employer size; 2022: abolition of partial pension; 2023: valorisation above CPI for lowest pensions",taxation:"EET for ZUS pension (contributions from gross, benefits taxed); PPK: employer contributions taxed as income; IKE capital gains exempt; IKZE benefits taxed at 10% flat",keyLaw:"Ustawa o emeryturach i rentach z FUS 17.12.1998; Ustawa o PPK 4.10.2018; Ustawa o IKE i IKZE" },
+    social_security:{ overview:"ZUS (Zakład Ubezpieczeń Społecznych) administers all mandatory insurance branches; NFZ manages health insurance separately",branches:"Emerytalne (pension), rentowe (disability/survivor), chorobowe (sickness), wypadkowe (accident); zdrowotne (health via NFZ)",totalEmployee:"13.71% (pension 9.76% + disability 1.5% + sickness 2.45%); plus 9% NFZ health contribution",totalEmployer:"20.74% (pension 9.76% + disability 6.5% + accident ~1.67% variable + FP 2.45% labour fund + FGŚP 0.1%)",ceiling:"No ceiling for pension/disability since 2015; accident and sickness: 250% average monthly salary threshold triggers",keyLaw:"Ustawa o systemie ubezpieczeń społecznych 13.10.1998; Ustawa o świadczeniach opieki zdrowotnej finansowanych ze środków publicznych" },
+    death:{ spousePension:"Renta rodzinna: 85% of deceased's pension/entitlement (spouse + 1 child); 90% with 2 children; 95% with 3+; income-tested for spouse",orphanPension:"Included in renta rodzinna; orphan supplement (dodatek dla sieroty zupełnej) for full orphans: PLN 599.60/mo (2024)",lumpSum:"Zasiłek pogrzebowy: PLN 4,000 flat funeral grant; payable to person who covered funeral costs",conditions:"Spouse: married at time of death; age ≥50 or disabled or caring for eligible child; de facto unions not entitled to state survivor pension" },
+    disability:{ type:"Całkowita niezdolność do pracy (full — cannot work at all) or częściowa (partial — cannot work in own occupation); orzeczenie ZUS",amount:"Full disability: ~75–80% of reference base; partial: ~65–70%; determined by contributions and NDC formula",qualifying:"Full: 5 years in last 10 for age 30–35; Partial: 5 years in last 10; shorter qualifying periods for younger workers",duration:"Temporary (max 3 years, renewable) or permanent; reassessed by ZUS medical board (komisja lekarska)",keyLaw:"Ustawa o emeryturach i rentach z FUS 17.12.1998 — Art. 57–62" },
+    medical:{ system:"NFZ (Narodowy Fundusz Zdrowia): universal mandatory public health insurance; 16 regional funds; free at point of use for insured",contribution:"9% of gross assessment base (employee only, non-deductible from income tax since 2022 Polski Ład reform)",private:"Medicover, LuxMed, Enel-Med: major private providers; ~4–5 million private subscribers; increasingly employer-sponsored benefit",coverage:"Universal basic basket (świadczenia gwarantowane): GP, specialist, hospital, drugs (partially subsidised list); dental: limited public coverage" },
+    parental:{ maternity:"Urlop macierzyński: 20 weeks (singleton); 31–37 weeks (multiple births); 100% of assessment base via ZUS",paternity:"Urlop ojcowski: 2 weeks; 100% salary via ZUS; until child age 24 months; unused weeks forfeited",parentalLeave:"Urlop rodzicielski: 32 weeks (41 weeks twins+); 70% rate (or 81.5% if declared before birth for full period); 9 weeks non-transferable per parent (EU directive 2023)",childcare:"Urlop wychowawczy: 36 months unpaid per child until age 6; 1 month reserved per parent non-transferable; Żłobek (nursery) 80% state-subsidised for low income",keyLaw:"Kodeks pracy Art. 180–1891 (maternity/paternity); Ustawa o opiece nad dziećmi do lat 3" },
+    social:{ unemployment:"Zasiłek dla bezrobotnych: basic PLN 1,491.90/mo (first 90 days), PLN 1,172.60/mo thereafter (2024); 80–120% depending on prior seniority",socialAssistance:"Pomoc społeczna via MOPS (Municipal Social Support Centres); income threshold PLN 776/person single; PLN 600/person in family",childBenefit:"800+ (formerly 500+): PLN 800/child/month; universal (no income test since 2023 reform); payable from birth to 18; managed by ZUS since 2024" },
+    perquisites:{ commonBenefits:"Prywatna opieka medyczna (private health package): most common; MultiSport/FitProfit card; meal vouchers (Sodexo/Edenred); company car; PPK top-up; laptop/phone",taxFree:"Meal vouchers exempt from social contributions if ≤PLN 300/mo via Sodexo-type cards; ZFŚS vouchers exempt from income tax; health insurance employer-paid: ZUS and PIT subject to inclusion",companyPension:"PPK: employer 1.5% mandatory + optional top-up to 4%; fully portable DC; tax-advantaged (employer contributions count as employee income)" },
+    flexible:{ cafeteria:"No specific Polish legislation for cafeteria plans; structured via work regulations (regulamin wynagradzania) or individual agreements",commonModels:"ZFŚS (Company Social Benefits Fund): mandatory for 50+ FTE employees (3.3758× average monthly salary per employee annually); funds holiday subsidies, cultural events, loans" },
+    severance:{ notice:"Kodeks pracy Art. 36: 2 weeks (0–6 months seniority), 1 month (6mo–3yr), 3 months (3yr+); notice runs from first/last day of month",severance:"Odprawa: Art. 8 collective redundancy act — 1 month (0–2yr), 2 months (2–8yr), 3 months (8yr+); capped at 15× minimum wage; individual redundancy: odprawa not obligatory unless collective rules apply",protection:"Szczególna ochrona: pre-retirement (4 years to retirement), maternity/parental leave, union officials; notice prohibited; Sąd Pracy (Labour Court) jurisdiction",keyLaw:"Kodeks pracy Art. 36–67; Ustawa o zwolnieniach grupowych 13.03.2003" },
+    working_time:{ maxHours:"8h/day; 40h/week in basic system; equivalent period (3/4-month reference) allows averaging",overtime:"150h/year standard OT limit per employer regulations; individual agreement allows up to 416h/yr; premium: +50% weekdays, +100% nights/Sundays/public holidays",vacation:"20 working days (0–10yr seniority); 26 working days (10yr+); seniority includes education periods; 4 days on-demand (żądanie) per year",publicHolidays:"13 public holidays nationally; regional: Corpus Christi (movable); all guaranteed rest days",keyLaw:"Kodeks pracy Art. 128–151 (czas pracy); Art. 152–168 (urlopy wypoczynkowe)" },
+    residence:{ eu:"Free movement; EU citizens: registration (zameldowanie) after 3 months; EU citizen residence card (karta pobytu) from 5yr continuous stay",nonEu:"Zezwolenie na pracę type A (employment): issued by Voivode; single permit (zezwolenie na pobyt i pracę) combining work + residence; EU Blue Card (Niebieska Karta) for highly qualified; Ukrainians: special protection status + simplified work access since 2022",keyLaw:"Ustawa o cudzoziemcach 12.12.2013; Ustawa o promocji zatrudnienia i instytucjach rynku pracy" },
+    contract:{ forms:"Umowa o pracę: na czas nieokreślony (indefinite), na czas określony (fixed-term), na okres próbny (probation); also civil law contracts (B2B, umowa zlecenie) widely used but distinct",probation:"Okres próbny: max 3 months; 2023 reform links duration to intended fixed-term: 1 month if <6mo fixed, 2 months if 6mo–12mo fixed; freely terminable",written:"Written form required; employer must provide contract before commencement or on first day at latest; EU transparency directive transposed 2023",keyLaw:"Kodeks pracy Art. 25–67; Ustawa o zmianie Kodeksu pracy (2023 — transparency directive)" },
+    health_safety:{ framework:"BHP (Bezpieczeństwo i Higiena Pracy): Kodeks pracy Section X; employer must assess risks, provide OSH training, ensure safe working conditions; PIP (Państwowa Inspekcja Pracy) enforces",occupationalDoctor:"Medycyna pracy: mandatory periodic medical exams (badania wstępne, okresowe, kontrolne); employee cannot start work without wstępne; employer pays cost; Rozporządzenie MZiOS 1996",reporting:"Wypadek przy pracy: employer establishes investigation team within 14 days; fatal/serious: immediate PIP notification; ZUS reporting for work-injury benefits",keyLaw:"Kodeks pracy Dział X; Rozporządzenie RM w sprawie wypadków przy pracy 1.07.2009; Ustawa o PIP 13.04.2007" },
+    industrial:{ tradeUnions:"NSZZ Solidarność (largest, ~600k members) and OPZZ (~400k members) are main confederations; ~12–14% overall density; trade union pluralism common",worksCouncil:"Rada pracowników (Works Council): EU directive 2002/14/EC transposed via Ustawa 2006; companies with 50+ employees; information and consultation rights only (no co-determination)",boardLevel:"No mandatory board-level employee representation in Polish private sector; state-owned companies: supervisory board worker representation under separate rules",keyLaw:"Ustawa o związkach zawodowych 23.05.1991; Ustawa o informowaniu pracowników i przeprowadzaniu z nimi konsultacji 07.04.2006" },
+  },
 };
 
 // Simple markdown renderer
@@ -593,24 +674,24 @@ function renderMd(text) {
     if (line.startsWith("## ")) {
       elements.push(<h3 key={i} style={{fontSize:"14px",fontWeight:"700",color:"var(--text-primary)",margin:"16px 0 6px",borderBottom:"1px solid var(--border)",paddingBottom:"4px",fontFamily:"var(--font-sans)"}}>{line.slice(3)}</h3>);
     } else if (line.startsWith("### ")) {
-      elements.push(<h4 key={i} style={{fontSize:"13px",fontWeight:"700",color:"var(--text-primary)",margin:"12px 0 4px"}}>{line.slice(4)}</h4>);
+      elements.push(<h4 key={i} style={{fontSize:"14px",fontWeight:"700",color:"var(--text-primary)",margin:"12px 0 4px"}}>{line.slice(4)}</h4>);
     } else if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      elements.push(<p key={i} style={{margin:"8px 0 2px",fontWeight:"700",color:"var(--text-primary)",fontSize:"13px"}}>{line.slice(2,-2)}</p>);
+      elements.push(<p key={i} style={{margin:"8px 0 2px",fontWeight:"700",color:"var(--text-primary)",fontSize:"14px"}}>{line.slice(2,-2)}</p>);
     } else if (line.startsWith("- ") || line.startsWith("• ")) {
       const content = line.slice(2);
       const parts = content.split(/\*\*(.*?)\*\*/g);
       elements.push(<div key={i} style={{display:"flex",gap:"8px",margin:"3px 0",alignItems:"flex-start"}}>
         <span style={{color:"var(--accent)",fontWeight:"700",flexShrink:0,marginTop:"1px"}}>›</span>
-        <span style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.6"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j}>{p}</strong>)}</span>
+        <span style={{fontSize:"14px",color:"var(--text-primary)",lineHeight:"1.6"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j}>{p}</strong>)}</span>
       </div>);
     } else if (line.trim() === "") {
       elements.push(<div key={i} style={{height:"8px"}}/>);
     } else {
       const parts = line.split(/\*\*(.*?)\*\*/g);
       if (parts.length > 1) {
-        elements.push(<p key={i} style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j} style={{color:"var(--text-primary)"}}>{p}</strong>)}</p>);
+        elements.push(<p key={i} style={{fontSize:"14px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{parts.map((p,j)=>j%2===0?p:<strong key={j} style={{color:"var(--text-primary)"}}>{p}</strong>)}</p>);
       } else if (line.trim()) {
-        elements.push(<p key={i} style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{line}</p>);
+        elements.push(<p key={i} style={{fontSize:"14px",color:"var(--text-primary)",lineHeight:"1.7",margin:"4px 0"}}>{line}</p>);
       }
     }
     i++;
@@ -784,20 +865,20 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
     app: { fontFamily:'var(--font-sans)', flex:1, minHeight:0, color:"var(--text-primary)", display:"flex", flexDirection:"column" },
     header: { background:"linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 100%)", borderBottom:"1px solid var(--accent-border)", padding:"20px 28px 0", flexShrink:0 },
     title: { fontSize:"24px", fontWeight:"700", color:"var(--text-primary)", letterSpacing:"0.3px", marginBottom:"2px" },
-    subtitle: { fontSize:"11px", color:"var(--text-secondary)", fontFamily:'var(--font-mono)', letterSpacing:"3px", textTransform:"uppercase", marginBottom:"16px" },
+    subtitle: { fontSize:"12px", color:"var(--text-secondary)", fontFamily:'var(--font-mono)', letterSpacing:"3px", textTransform:"uppercase", marginBottom:"16px" },
     layout: { display:"flex", flex:1, overflow:"hidden", minHeight:0 },
     tableArea: { flex:1, overflow:"auto", padding:"20px 24px", minHeight:0 },
     countryBtn: (sel) => ({ background:sel?"var(--accent-dim)":"transparent", border:sel?"1px solid var(--accent-dim)":"1px solid var(--bg-3)", color:sel?"var(--accent)":"var(--text-secondary)", padding:"5px 12px", borderRadius:"3px", cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", gap:"5px", transition:"all 0.15s", fontFamily:'var(--font-sans)' }),
-    catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"11px", color:act?"var(--accent)":"var(--text-secondary)", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
-    table: { width:"100%", borderCollapse:"separate", borderSpacing:0, fontSize:"12.5px", fontFamily:'var(--font-sans)', border:"1px solid var(--border)", borderRadius:"6px" },
-    th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"11px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid var(--accent-border)", position:"sticky", top:0, left:i===0?0:"auto", zIndex:i===0?4:2, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
+    catTab: (act) => ({ padding:"10px 14px", cursor:"pointer", fontSize:"12px", color:act?"var(--accent)":"var(--text-secondary)", borderBottom:act?"2px solid var(--accent)":"2px solid transparent", whiteSpace:"nowrap", background:"none", border:"none", borderBottom: act?"2px solid var(--accent)":"2px solid transparent", fontFamily:'var(--font-sans)', letterSpacing:"0.3px", transition:"all 0.15s" }),
+    table: { width:"100%", borderCollapse:"separate", borderSpacing:0, fontSize:"13.5px", fontFamily:'var(--font-sans)', border:"1px solid var(--border)", borderRadius:"6px" },
+    th: (i) => ({ padding:"10px 14px", background:i===0?"var(--bg-0)":"var(--bg-1)", color:"var(--accent)", fontSize:"12px", fontWeight:"700", letterSpacing:"1px", textTransform:"uppercase", borderBottom:"1px solid var(--accent-border)", position:"sticky", top:0, left:i===0?0:"auto", zIndex:i===0?4:2, minWidth:i===0?"150px":"200px", whiteSpace:"nowrap" }),
     tr: (i,hover) => ({ background:hover?"var(--bg-3)":(i%2===0?"var(--bg-0)":"var(--bg-1)"), cursor:"pointer", transition:"background 0.1s" }),
-    td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"var(--accent)":"var(--accent)"):"var(--text-secondary)", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"12px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
-    panel: { width:"480px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid var(--accent-border)", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
+    td: (i,highlight) => ({ padding:"10px 14px", borderBottom:"1px solid var(--bg-1)", color:i===0?(highlight?"var(--accent)":"var(--accent)"):"var(--text-secondary)", fontWeight:i===0?"600":"400", lineHeight:"1.5", verticalAlign:"top", position:i===0?"sticky":"static", left:i===0?0:"auto", background:"inherit", zIndex:i===0?1:"auto", minWidth:i===0?"150px":"200px", fontSize:"13px", borderLeft:highlight&&i===0?"2px solid var(--accent)":"2px solid transparent" }),
+    panel: { width:"640px", flexShrink:0, background:"var(--bg-2)", borderLeft:"1px solid var(--accent-border)", display:"flex", flexDirection:"column", overflow:"hidden", transition:"width 0.3s" },
     panelHeader: { background:"var(--bg-3)", padding:"20px", borderBottom:"1px solid var(--accent-border)" },
     panelBody: { flex:1, overflow:"auto", padding:"20px" },
     sourceLink: { display:"flex", alignItems:"flex-start", gap:"10px", padding:"10px 12px", background:"var(--bg-0)", border:"1px solid var(--border)", borderRadius:"4px", marginBottom:"8px", textDecoration:"none", transition:"all 0.15s", cursor:"pointer" },
-    subTab: (act) => ({ padding:"6px 12px", background:act?"var(--accent)":"transparent", color:act?"var(--bg-0)":"var(--text-secondary)", border:"1px solid "+(act?"var(--accent)":"var(--bg-3)"), borderRadius:"3px", cursor:"pointer", fontSize:"11px", fontFamily:'var(--font-sans)', fontWeight:act?"700":"400", transition:"all 0.15s" }),
+    subTab: (act) => ({ padding:"6px 12px", background:act?"var(--accent)":"transparent", color:act?"var(--bg-0)":"var(--text-secondary)", border:"1px solid "+(act?"var(--accent)":"var(--bg-3)"), borderRadius:"3px", cursor:"pointer", fontSize:"12px", fontFamily:'var(--font-sans)', fontWeight:act?"700":"400", transition:"all 0.15s" }),
     appShell: {
       position: 'relative',
       isolation: 'isolate',
@@ -894,9 +975,9 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
               placeholder="🔍 Search field or value..."
               value={searchTerm}
               onChange={e=>setSearchTerm(e.target.value)}
-              style={{background:"var(--bg-3)",border:"1px solid var(--border)",borderRadius:"4px",padding:"7px 12px",color:"var(--text-primary)",fontSize:"12px",fontFamily:"var(--font-sans)",width:"220px",outline:"none"}}
+              style={{background:"var(--bg-3)",border:"1px solid var(--border)",borderRadius:"4px",padding:"7px 12px",color:"var(--text-primary)",fontSize:"13px",fontFamily:"var(--font-sans)",width:"220px",outline:"none"}}
             />
-            <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)"}}>Click any cell → Deep AI Analysis</div>
+            <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)"}}>Click any cell → Deep AI Analysis</div>
           </div>
         </div>
         <div style={{display:"flex",gap:"6px",flexWrap:"wrap",marginBottom:"12px"}}>
@@ -919,7 +1000,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
         <div style={S.tableArea}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:"14px"}}>
             <div>
-              <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",textTransform:"uppercase"}}>
+              <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",textTransform:"uppercase"}}>
                 {currentCatDef?.icon} {currentCatDef?.label} · {activeCountries.length} countries
               </div>
               {activeCategory==="pension" && (
@@ -931,7 +1012,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
               )}
             </div>
             {detailPanel && (
-              <button onClick={()=>setDetailPanel(null)} style={{background:"transparent",border:"1px solid var(--border)",color:"var(--text-secondary)",padding:"6px 12px",borderRadius:"3px",cursor:"pointer",fontSize:"11px",fontFamily:"var(--font-sans)"}}>
+              <button onClick={()=>setDetailPanel(null)} style={{background:"transparent",border:"1px solid var(--border)",color:"var(--text-secondary)",padding:"6px 12px",borderRadius:"3px",cursor:"pointer",fontSize:"12px",fontFamily:"var(--font-sans)"}}>
                 ✕ Close Panel
               </button>
             )}
@@ -968,7 +1049,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                             onClick={()=>openDetail(c, activeCategory, field)}
                             title="Click for deep AI analysis + sources"
                           >
-                            {val || <span style={{color:"var(--text-primary)",fontSize:"11px"}}>—</span>}
+                            {val || <span style={{color:"var(--text-primary)",fontSize:"12px"}}>—</span>}
                             {isActiveCell && <div style={{fontSize:"9px",color:"var(--accent)",marginTop:"3px",fontFamily:"var(--font-mono)"}}>▶ VIEWING</div>}
                           </td>
                         );
@@ -979,7 +1060,7 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
               </tbody>
           </table>
           {searchFiltered.length===0 && (
-            <div style={{textAlign:"center",padding:"48px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",fontSize:"13px"}}>No fields match "{searchTerm}"</div>
+            <div style={{textAlign:"center",padding:"48px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",fontSize:"14px"}}>No fields match "{searchTerm}"</div>
           )}
           <div style={{marginTop:"20px",fontSize:"10px",color:"var(--text-primary)",fontFamily:"var(--font-mono)",borderTop:"1px solid var(--border)",paddingTop:"12px"}}>
             Data reflects legislation and CLAs as of 2024 · Click any cell for AI-generated detailed analysis · Select up to 6 countries · Always verify with local counsel
@@ -991,12 +1072,12 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
             <div style={S.panelHeader}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
                 <div>
-                  <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"4px"}}>
+                  <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"4px"}}>
                     {detailPanel.catLabel.toUpperCase()}
                   </div>
                   <div style={{fontSize:"20px",marginBottom:"2px"}}>{detailPanel.country.flag}</div>
                   <div style={{fontSize:"16px",fontWeight:"700",color:"var(--text-primary)"}}>{detailPanel.country.name}</div>
-                  <div style={{fontSize:"13px",color:"var(--accent)",marginTop:"2px"}}>{detailPanel.fieldLabel}</div>
+                  <div style={{fontSize:"14px",color:"var(--accent)",marginTop:"2px"}}>{detailPanel.fieldLabel}</div>
                 </div>
                 <button onClick={()=>setDetailPanel(null)} style={{background:"transparent",border:"none",color:"var(--text-secondary)",cursor:"pointer",fontSize:"18px",padding:"0"}}>×</button>
               </div>
@@ -1005,13 +1086,13 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
             <div style={S.panelBody}>
               {/* Summary box */}
               <div style={{background:"var(--bg-0)",border:"1px solid var(--border)",borderRadius:"4px",padding:"12px 14px",marginBottom:"16px"}}>
-                <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"6px"}}>OFFICIAL DATA SUMMARY</div>
-                <div style={{fontSize:"12.5px",color:"var(--text-primary)",lineHeight:"1.6",fontFamily:"var(--font-sans)"}}>{detailPanel.summaryData}</div>
+                <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"6px"}}>OFFICIAL DATA SUMMARY</div>
+                <div style={{fontSize:"14px",color:"var(--text-primary)",lineHeight:"1.6",fontFamily:"var(--font-sans)"}}>{detailPanel.summaryData}</div>
               </div>
 
               {/* AI Analysis */}
               <div style={{marginBottom:"20px"}}>
-                <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"10px",display:"flex",alignItems:"center",gap:"8px"}}>
+                <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"10px",display:"flex",alignItems:"center",gap:"8px"}}>
                   <span>✦ AI DEEP ANALYSIS</span>
                   {aiData?.streaming && <span style={{color:"var(--accent)",animation:"pulse 1s infinite"}}>● GENERATING</span>}
                 </div>
@@ -1020,36 +1101,36 @@ Use **bold** for key numbers and important terms. Be specific and practical — 
                     {[100,85,92,70,88].map((w,i)=>(
                       <div key={i} style={{height:"12px",background:"var(--bg-2)",borderRadius:"2px",width:`${w}%`,animation:"pulse 1.5s ease-in-out infinite",animationDelay:`${i*0.1}s`}}/>
                     ))}
-                    <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",marginTop:"4px"}}>Generating detailed analysis…</div>
+                    <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",marginTop:"4px"}}>Generating detailed analysis…</div>
                   </div>
                 )}
                 {aiData?.text && (
-                  <div style={{fontSize:"13px",color:"var(--text-primary)",lineHeight:"1.7",fontFamily:"var(--font-sans)"}}>
+                  <div style={{fontSize:"15px",color:"var(--text-primary)",lineHeight:"1.7",fontFamily:"var(--font-sans)"}}>
                     {renderMd(aiData.text)}
                   </div>
                 )}
                 {!aiData && (
-                  <div style={{fontSize:"12px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",fontStyle:"italic"}}>Loading analysis…</div>
+                  <div style={{fontSize:"13px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",fontStyle:"italic"}}>Loading analysis…</div>
                 )}
               </div>
 
               {/* Official Sources */}
               {panelSources.length > 0 && (
                 <div>
-                  <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"10px"}}>⊕ OFFICIAL SOURCES & REFERENCES</div>
+                  <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-mono)",letterSpacing:"2px",marginBottom:"10px"}}>⊕ OFFICIAL SOURCES & REFERENCES</div>
                   {panelSources.map((src, i) => (
                     <a key={i} href={src.url} target="_blank" rel="noopener noreferrer" style={S.sourceLink}
                       onMouseEnter={e=>{e.currentTarget.style.borderColor="var(--accent)";e.currentTarget.style.background="var(--bg-1)";}}
                       onMouseLeave={e=>{e.currentTarget.style.borderColor="var(--border)";e.currentTarget.style.background="var(--bg-0)";}}>
                       <div style={{flexShrink:0,width:"24px",height:"24px",background:"var(--bg-3)",borderRadius:"3px",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"10px",color:"var(--accent)",fontWeight:"700"}}>↗</div>
                       <div>
-                        <div style={{fontSize:"12px",fontWeight:"600",color:"var(--text-primary)",marginBottom:"2px",fontFamily:"var(--font-sans)"}}>{src.label}</div>
-                        <div style={{fontSize:"11px",color:"var(--text-secondary)",lineHeight:"1.4",fontFamily:"var(--font-sans)"}}>{src.desc}</div>
-                        <div style={{fontSize:"10px",color:"var(--text-secondary)",marginTop:"2px",fontFamily:"var(--font-mono)"}}>{src.url}</div>
+                        <div style={{fontSize:"13px",fontWeight:"600",color:"var(--text-primary)",marginBottom:"2px",fontFamily:"var(--font-sans)"}}>{src.label}</div>
+                        <div style={{fontSize:"12px",color:"var(--text-secondary)",lineHeight:"1.4",fontFamily:"var(--font-sans)"}}>{src.desc}</div>
+                        <div style={{fontSize:"11px",color:"var(--text-secondary)",marginTop:"2px",fontFamily:"var(--font-mono)"}}>{src.url}</div>
                       </div>
                     </a>
                   ))}
-                  <div style={{fontSize:"10px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",marginTop:"8px",fontStyle:"italic",lineHeight:"1.5"}}>
+                  <div style={{fontSize:"11px",color:"var(--text-secondary)",fontFamily:"var(--font-sans)",marginTop:"8px",fontStyle:"italic",lineHeight:"1.5"}}>
                     Sources verified as of 2024. Government portal URLs may change; always verify current URL via official search.
                   </div>
                 </div>
